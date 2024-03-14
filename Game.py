@@ -124,7 +124,7 @@ class Game:
             else:
                 # 合并当前项和下一项
                 collapes[k] = non_zero[i] * 2
-                merged_score += non_zero[i] * 2  # 更新得分逻辑，根据具体游戏规则可能需要调整
+                merged_score += non_zero[i] * 2
                 i += 1  # 跳过下一项
 
             i += 1
