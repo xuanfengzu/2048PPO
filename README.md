@@ -51,6 +51,9 @@ def take_action_with_random_choice(self, state):
 #### 训练参数
 训练参数都在PPO_CONFIG.py中给出了。
 
+#### 训练
+直接运行train.py就可以了，会自动保存和加载已经存在的checkpoints
+
 #### 目前存在的问题
 其实有一个令我很震惊的东西，我一开始训练的一个版本中看到了比较好的效果，但是后来发现网络架构除了一点问题，我在CNN输出$ batch\_size \times 12 \times 4 \times 4 $的张量后直接使用view函数变形为$ batch\_size \times 16 \times 12 $了，这样好像会导致这个16不是和棋盘每个位置的状态对应而是一种乱序的状态吧？后来我改成先将其变形为$ batch\_size \times 12 \times 16 $然后再交换后两维变成$ batch\_size \times 16 \times 12 $，这样应该才是正确的序列，但是这样子的训练效果反而变差了（可以说完全没有在训练）。
 ![result1](https://github.com/xuanfengzu/2048PPO/blob/main/result.png "result1")
